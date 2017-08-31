@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>好友用户列表</title>
+</head>
+<body>
+    <h1>用户列表（{{ user_list.MemberCount }}）</h1>
+    {% for user in user_list.MemberList %}
+        <div username="{{ user.UserName }}">
+            <img style="width: 50px;height: 50px;" src="/avatar.html?prev={{ user.HeadImgUrl }}"><span>{{ user.NickName }}</span>
+            <span>{{ user.NickName }}</span>
+        </div>
+    {% endfor %}
+
+    <script src="/static/jquery-1.12.4.js"></script>
+
+    <script>
+        $(function () {
+            getMsg();
+        });
+
+        function getMsg() {
+            $.ajax({
+                url: '/get_msg.html',
+                type: 'GET',
+                success:function (arg) {
+                    //console.log(arg);
+                    getMsg();
+                }
+            })
+        }
+    </script>
+</body>
+</html>
